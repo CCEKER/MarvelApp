@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MarvelCharactersInteractorProtocol {
-    
+    func viewDidLoad()
 }
 
 protocol MarvelCharactersInteractorCoordinatorDelegate: AnyObject {
@@ -29,4 +29,14 @@ final class MarvelCharactersInteractor {
 
 extension MarvelCharactersInteractor: MarvelCharactersInteractorProtocol {
     
+    func viewDidLoad() {
+        characterService.getCharacters(offset: 2) { result in
+            switch result {
+            case .success(let result):
+                self.presenter.presentCharacters(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

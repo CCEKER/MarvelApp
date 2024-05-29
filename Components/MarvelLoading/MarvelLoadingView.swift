@@ -60,7 +60,7 @@ final class MarvelLoadingView: UIView {
     }
     
     private func setupBackgroundView() {
-        backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        backgroundColor = UIColor.black.withAlphaComponent(0.2)
     }
     
     private func setupLoadingAnimation() {

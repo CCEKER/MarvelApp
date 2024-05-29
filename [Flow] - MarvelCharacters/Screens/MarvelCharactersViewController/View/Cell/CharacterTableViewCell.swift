@@ -11,11 +11,10 @@ class CharacterTableViewCell: UITableViewCell {
     
     private let characterName: UILabel = {
         let view = UILabel()
-        view.textAlignment = .center
+        view.textAlignment = .left
         view.textColor = .systemRed
-        view.font = UIFont(name: "Roboto", size: 20)
-        view.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        view.numberOfLines = 0
+        view.font = FontManager.marvelRegularFont(ofSize: 20)
+        view.numberOfLines = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -48,7 +47,7 @@ class CharacterTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = .black
+        contentView.backgroundColor = .clear
         contentView.addSubview(characterName)
         contentView.addSubview(characterImage)
     }
@@ -66,6 +65,7 @@ class CharacterTableViewCell: UITableViewCell {
             characterName.leadingAnchor.constraint(equalTo: characterImage.trailingAnchor, constant: 8),
             characterName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
     

@@ -9,19 +9,34 @@ import UIKit
 
 class CharacterDetailView: UIView {
     
-    private let characterDetailImage: UIImageView = {
+    private let characterDetailImageView: UIView = {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.layer.shadowColor = UIColor.red.cgColor
+        container.layer.shadowOffset = CGSize(width: 0, height: 0)
+        container.layer.shadowOpacity = 1
+        container.layer.shadowRadius = 20
+        container.clipsToBounds = false
+        
         let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
         view.layer.borderColor = UIColor.red.cgColor
         view.layer.borderWidth = 3
-        view.clipsToBounds = true
         view.layer.cornerRadius = 90
-        view.layer.shadowColor = UIColor.red.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 5)
-        view.layer.shadowOpacity = 0.5
-        view.layer.shadowRadius = 1
-        view.heightAnchor.constraint(equalToConstant: 180).isActive = true
-        return view
+        view.clipsToBounds = true
+        
+        container.addSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: container.topAnchor),
+            view.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            view.heightAnchor.constraint(equalToConstant: 180)
+        ])
+        
+        return container
     }()
     
     private let characterName: UILabel = {
@@ -34,8 +49,8 @@ class CharacterDetailView: UIView {
         return view
     }()
     
-    private lazy var characterImageStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [characterDetailImage, characterName, descriptionLabel])
+    private lazy var characterLabelStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [characterName, descriptionLabel])
         view.axis = .vertical
         view.spacing = 10
         view.alignment = .center
@@ -90,7 +105,8 @@ class CharacterDetailView: UIView {
     
     private func setupViews() {
         backgroundColor = .black
-        addSubview(characterImageStackView)
+        addSubview(characterDetailImageView)
+        addSubview(characterLabelStackView)
         addSubview(descriptionLabel)
         addSubview(infoLabel)
         addSubview(tableView)
@@ -99,21 +115,26 @@ class CharacterDetailView: UIView {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-        
-            characterImageStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 40),
-            characterImageStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100),
-            characterImageStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
             
-            descriptionLabel.topAnchor.constraint(equalTo: characterImageStackView.bottomAnchor, constant: 30),
+            characterDetailImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            characterDetailImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 24),
+            characterDetailImageView.heightAnchor.constraint(equalToConstant: 180),
+            characterDetailImageView.widthAnchor.constraint(equalToConstant: 180),
+        
+            characterLabelStackView.topAnchor.constraint(equalTo: characterDetailImageView.bottomAnchor, constant: 24),
+            characterLabelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            characterLabelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: characterLabelStackView.bottomAnchor, constant: 30),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             
             infoLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 30),
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            tableView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 12),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -121,13 +142,14 @@ class CharacterDetailView: UIView {
     func reloadWith(_ viewModel: CharacterDetailViewModel) {
         
         characterName.text = viewModel.name
-        descriptionLabel.text = viewModel.description.isEmpty ? "There is no description." : viewModel.description
+        descriptionLabel.text = viewModel.description.isEmpty ? "No description found." : viewModel.description
         infoLabel.text = viewModel.infoLabel
         
         DispatchQueue.global().async {
             if let data = try? Data(contentsOf: URL(string: viewModel.imageUrl)!), let image = UIImage(data: data) {
                 DispatchQueue.main.async {
-                    self.characterDetailImage.image = image
+                    guard let imageView = self.characterDetailImageView.subviews[0] as? UIImageView else { return }
+                    imageView.image = image
                 }
             }
         }

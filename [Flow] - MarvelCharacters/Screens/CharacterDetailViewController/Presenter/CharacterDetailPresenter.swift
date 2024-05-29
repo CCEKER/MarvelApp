@@ -17,11 +17,21 @@ final class CharacterDetailPresenter: CharacterDetailPresenterProtocol {
     
     func presentSelectedCharacter(_ selectedCharacter: Character, sortedComics: [ComicsItem]) {
         
+        var arrangedSortedComics = sortedComics
+        
+        if sortedComics.count == 0 {
+            let noComics = ComicsItem(
+                resourceURI: "",
+                name: "No Comics Found"
+            )
+            arrangedSortedComics = [noComics]
+        }
+        
         let viewModel = CharacterDetailViewModel(
             name: selectedCharacter.name,
             imageUrl: selectedCharacter.thumbnail.path + "." + selectedCharacter.thumbnail.thumbnailExtension,
             description: selectedCharacter.description,
-            comics: sortedComics,
+            comics: arrangedSortedComics,
             infoLabel: "Comics Published After 2005"
         )
         viewController?.displayCharacterDetailViewModel(viewModel)

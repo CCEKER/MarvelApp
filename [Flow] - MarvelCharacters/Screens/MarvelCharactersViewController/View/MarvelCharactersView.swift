@@ -34,7 +34,7 @@ class MarvelCharactersView: UIView {
     }
     
     private func setupViews() {
-        backgroundColor = .black
+        backgroundColor = .systemBackground
         addSubview(tableView)
     }
     
@@ -43,8 +43,8 @@ class MarvelCharactersView: UIView {
         NSLayoutConstraint.activate([
         
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }

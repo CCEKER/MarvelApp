@@ -9,6 +9,7 @@ import Foundation
 
 protocol MarvelCharactersPresenterProtocol {
     func presentCharacters(_ character: [Character])
+    func presentLoading()
 }
 
 final class MarvelCharactersPresenter: MarvelCharactersPresenterProtocol {
@@ -26,5 +27,11 @@ final class MarvelCharactersPresenter: MarvelCharactersPresenterProtocol {
             )
         }
         viewController?.displayCharacterViewModel(.initial(viewModel))
+    }
+    
+    func presentLoading() {
+        let caption = "Loading..."
+        let viewModel = MarvelLoadingViewModel(caption: caption)
+        viewController?.displayCharacterViewModel(.loading(viewModel))
     }
 }

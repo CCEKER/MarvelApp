@@ -38,8 +38,6 @@ class MarvelCharactersViewController: UIViewController, MarvelLoadingDisplayable
         self.customView.tableView.dataSource = self
         self.customView.tableView.delegate = self
         
-        showLoading(viewModel: .init(caption: "loading"))
-        
         interactor.viewDidLoad()
     }
     
@@ -58,12 +56,17 @@ class MarvelCharactersViewController: UIViewController, MarvelLoadingDisplayable
 extension MarvelCharactersViewController: MarvelCharactersViewControllerProtocol {
     
     func displayCharacterViewModel(_ viewState: CharacterViewState) {
+        
         switch viewState {
+            
         case .initial(let viewModel):
             self.tableData = viewModel
             self.customView.tableView.reloadData()
+            hideLoading()
+            
         case .loading:
-           break
+            showLoading(viewModel: .init(caption: "Loading..."))
+            
         }
     }
 }
@@ -93,7 +96,6 @@ extension MarvelCharactersViewController: UITableViewDelegate, UITableViewDataSo
         
         if position > (contentHeight - scrollViewHeight) {
             interactor.viewDidLoad()
-            hideLoading()
         }
     }
 }

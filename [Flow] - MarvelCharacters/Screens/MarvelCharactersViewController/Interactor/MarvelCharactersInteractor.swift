@@ -37,7 +37,8 @@ extension MarvelCharactersInteractor: MarvelCharactersInteractorProtocol {
         
         guard !isLoading else { return }
         isLoading = true
-        
+        self.presenter.presentLoading()
+
         characterService.getCharacters(offset: offset) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {

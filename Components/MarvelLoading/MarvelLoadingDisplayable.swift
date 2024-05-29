@@ -35,7 +35,6 @@ extension MarvelLoadingDisplayable where Self: UIViewController {
         guard let viewController = self.children.first(where: {$0.isKind(of: MarvelLoadingViewController.self)}) else {
             return
         }
-        
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()

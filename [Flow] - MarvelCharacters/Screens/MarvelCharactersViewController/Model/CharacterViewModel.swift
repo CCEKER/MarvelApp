@@ -9,7 +9,7 @@ import Foundation
 
 enum CharacterViewState {
     case initial([CharacterViewModel])
-    case loading
+    case loading(MarvelLoadingViewModel)
 }
 
 struct CharacterViewModel {

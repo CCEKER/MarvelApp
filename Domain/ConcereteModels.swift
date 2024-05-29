@@ -33,28 +33,17 @@ struct Character: Identifiable, Codable {
     let urls: [URLElement]?
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, description, modified, thumbnail, resourceURI, comics, series, stories, events, urls
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        description = try container.decode(String.self, forKey: .description)
-        modified = try container.decode(String.self, forKey: .modified)
-        thumbnail = try container.decode(Thumbnail.self, forKey: .thumbnail)
-        resourceURI = try container.decode(String.self, forKey: .resourceURI)
-        comics = try container.decode(Comics.self, forKey: .comics)
-        series = try container.decode(Comics.self, forKey: .series)
-        stories = try container.decode(Stories.self, forKey: .stories)
-        events = try container.decode(Comics.self, forKey: .events)
-        urls = try container.decode([URLElement].self, forKey: .urls)
-    }
-    
-    func modifiedDate() -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return dateFormatter.date(from: modified)
+        case id
+        case name
+        case description
+        case modified
+        case thumbnail
+        case resourceURI
+        case comics
+        case series
+        case stories
+        case events
+        case urls
     }
 }
 

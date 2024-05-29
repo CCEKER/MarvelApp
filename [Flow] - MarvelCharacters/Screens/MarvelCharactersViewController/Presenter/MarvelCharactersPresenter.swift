@@ -25,6 +25,6 @@ final class MarvelCharactersPresenter: MarvelCharactersPresenterProtocol {
                 imageUrl: character.thumbnail.path + "." + character.thumbnail.thumbnailExtension
             )
         }
-        viewController?.displayCharacterViewModel(viewModel)
+        viewController?.displayCharacterViewModel(.initial(viewModel))
     }
 }

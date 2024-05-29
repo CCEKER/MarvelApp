@@ -8,10 +8,10 @@
 import UIKit
 
 protocol MarvelCharactersViewControllerProtocol: AnyObject {
-    func displayCharacterViewModel(_ viewModel: [CharacterViewModel])
+    func displayCharacterViewModel(_ viewState: CharacterViewState)
 }
 
-class MarvelCharactersViewController: UIViewController {
+class MarvelCharactersViewController: UIViewController, MarvelLoadingDisplayable {
     
     private let customView = MarvelCharactersView()
     private let interactor: MarvelCharactersInteractorProtocol
@@ -38,6 +38,8 @@ class MarvelCharactersViewController: UIViewController {
         self.customView.tableView.dataSource = self
         self.customView.tableView.delegate = self
         
+        showLoading(viewModel: .init(caption: "loading"))
+        
         interactor.viewDidLoad()
     }
     
@@ -55,9 +57,14 @@ class MarvelCharactersViewController: UIViewController {
 
 extension MarvelCharactersViewController: MarvelCharactersViewControllerProtocol {
     
-    func displayCharacterViewModel(_ viewModel: [CharacterViewModel]) {
-        self.tableData = viewModel
-        self.customView.tableView.reloadData()
+    func displayCharacterViewModel(_ viewState: CharacterViewState) {
+        switch viewState {
+        case .initial(let viewModel):
+            self.tableData = viewModel
+            self.customView.tableView.reloadData()
+        case .loading:
+           break
+        }
     }
 }
 
@@ -86,6 +93,7 @@ extension MarvelCharactersViewController: UITableViewDelegate, UITableViewDataSo
         
         if position > (contentHeight - scrollViewHeight) {
             interactor.viewDidLoad()
+            hideLoading()
         }
     }
 }

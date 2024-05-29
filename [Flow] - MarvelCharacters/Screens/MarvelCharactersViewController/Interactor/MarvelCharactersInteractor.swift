@@ -41,7 +41,6 @@ extension MarvelCharactersInteractor: MarvelCharactersInteractorProtocol {
         characterService.getCharacters(offset: offset) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
-                self.isLoading = false
                 switch result {
                 case .success(let list):
                     self.characters.append(contentsOf: list)
@@ -50,6 +49,7 @@ extension MarvelCharactersInteractor: MarvelCharactersInteractorProtocol {
                 case .failure(let error):
                     print(error)
                 }
+                self.isLoading = false
             }
         }
     }

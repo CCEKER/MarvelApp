@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum CharacterViewState {
+    case initial([CharacterViewModel])
+    case loading
+}
+
 struct CharacterViewModel {
     let id: Int
     let name: String

@@ -12,4 +12,5 @@ struct CharacterDetailViewModel {
     let imageUrl: String
     let description: String
     let comics: [ComicsItem]
+    let infoLabel: String
 }

@@ -16,8 +16,7 @@ final class CharacterService: CharacterServiceProtocol {
     
     func getCharacters(offset: Int, completion: @escaping (Result<[Character], Error>) -> Void) {
         
-        
-        let baseURL = "https://gateway.marvel.com/v1/public/characters?ts=1716888126&limit=\(APIConstants.defaultLimit)&offset=\(offset)&apikey=28bede087e3f85b6080e72b877883b9a&hash=03b0de8a0f87e32766bc3fb2934c35f1"
+        let baseURL = "\(NetworkLayerConstant.baseURL)ts=1716888126&limit=\(APIConstants.defaultLimit)&offset=\(offset)&apikey=28bede087e3f85b6080e72b877883b9a&hash=03b0de8a0f87e32766bc3fb2934c35f1"
         
         let parameters: Parameters = ["offset": offset]
         

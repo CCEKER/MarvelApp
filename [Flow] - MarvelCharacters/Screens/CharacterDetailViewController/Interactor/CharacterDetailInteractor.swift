@@ -30,6 +30,23 @@ final class CharacterDetailInteractor {
 extension CharacterDetailInteractor: CharacterDetailInteractorProtocol {
     
     func viewDidLoad() {
-        presenter.presentSelectedCharacter(self.selectedCharacter)
+        
+        let sortedFilteredComics = selectedCharacter.comics?.items.compactMap { comic -> (comic: ComicsItem, year: Int)? in
+            guard let year = extractYearSimpe(from: comic.name) else { return nil }
+            return (comic, year)
+        }
+            .filter { $0.year > 2005 }
+            .sorted { $0.year > $1.year }
+            .map { $0.comic }
+        
+        let comicsTopresent = Array(sortedFilteredComics?.prefix(10) ?? [])
+        presenter.presentSelectedCharacter(self.selectedCharacter, sortedComics: comicsTopresent)
+    }
+    
+    private func extractYearSimpe(from name: String) -> Int? {
+        if let yearSubstring = name.split(separator: "(").last?.prefix(4), let year = Int(yearSubstring) {
+            return year
+        }
+        return nil
     }
 }

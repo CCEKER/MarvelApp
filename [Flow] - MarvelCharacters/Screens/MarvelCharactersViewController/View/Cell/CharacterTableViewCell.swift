@@ -24,7 +24,6 @@ class CharacterTableViewCell: UITableViewCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.layer.borderColor = UIColor.gray.cgColor
-        view.layer.borderWidth = 1
         view.layer.cornerRadius = 30
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -33,7 +32,7 @@ class CharacterTableViewCell: UITableViewCell {
         view.layer.shadowOpacity = 1
         view.layer.shadowRadius = 4
         view.layer.borderColor = UIColor.red.cgColor
-        view.layer.borderWidth = 1
+        view.layer.borderWidth = 0.3
         return view
     }()
 

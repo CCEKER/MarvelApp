@@ -11,7 +11,7 @@ class MarvelCharactersView: UIView {
     
     lazy var tableView: UITableView = {
         let view = UITableView()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         view.estimatedRowHeight = UITableView.automaticDimension
         view.separatorStyle = .none
         view.allowsSelection = true

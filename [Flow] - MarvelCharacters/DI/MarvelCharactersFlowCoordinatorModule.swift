@@ -10,6 +10,7 @@ import Swinject
 
 protocol MarvelCharactersFlowCoordinatorResolver {
     func resolveMarvelCharactersViewController(delegate: MarvelCharactersInteractorCoordinatorDelegate) -> UIViewController
+    func resolveCharacterDetailViewController(delegate: CharacterDetailInteractorCoordinatorDelegate, selectedCharacter: Character) -> UIViewController
 }
 
 final class MarvelCharactersFlowCoordinatorModule: MarvelCharactersFlowCoordinatorResolver {
@@ -28,5 +29,9 @@ final class MarvelCharactersFlowCoordinatorModule: MarvelCharactersFlowCoordinat
             fatalError("CharacterServiceProtocol should be registered.")
         }
         return MarvelCharactersViewController.build(coordinator: delegate, characterService: characterService)
+    }
+    
+    func resolveCharacterDetailViewController(delegate: CharacterDetailInteractorCoordinatorDelegate, selectedCharacter: Character) -> UIViewController {
+        CharacterDetailViewController.build(coordinator: delegate, selectedCharacter: selectedCharacter)
     }
 }

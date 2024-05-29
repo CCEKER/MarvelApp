@@ -9,10 +9,11 @@ import Foundation
 
 protocol MarvelCharactersInteractorProtocol {
     func viewDidLoad()
+    func didTapCharacter(at index: Int)
 }
 
 protocol MarvelCharactersInteractorCoordinatorDelegate: AnyObject {
-    
+    func didTapCharacter(character: Character)
 }
 
 final class MarvelCharactersInteractor {
@@ -20,6 +21,9 @@ final class MarvelCharactersInteractor {
     private let presenter: MarvelCharactersPresenterProtocol
     private let characterService: CharacterServiceProtocol
     weak var coordinator: MarvelCharactersInteractorCoordinatorDelegate?
+    private var offset = 0
+    private var characters: [Character] = []
+    private var isLoading = false
     
     init(presenter: MarvelCharactersPresenterProtocol, characterService: CharacterServiceProtocol) {
         self.presenter = presenter
@@ -30,13 +34,29 @@ final class MarvelCharactersInteractor {
 extension MarvelCharactersInteractor: MarvelCharactersInteractorProtocol {
     
     func viewDidLoad() {
-        characterService.getCharacters(offset: 2) { result in
-            switch result {
-            case .success(let result):
-                self.presenter.presentCharacters(result)
-            case .failure(let error):
-                print(error)
+        
+        guard !isLoading else { return }
+        isLoading = true
+        
+        characterService.getCharacters(offset: offset) { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success(let list):
+                    self.characters.append(contentsOf: list)
+                    self.offset += APIConstants.defaultLimit
+                    self.presenter.presentCharacters(self.characters)
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
+    }
+    
+    func didTapCharacter(at index: Int) {
+        
+        let selectedCharacter = characters[index]
+        self.coordinator?.didTapCharacter(character: selectedCharacter)
     }
 }

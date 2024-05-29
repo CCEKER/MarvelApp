@@ -37,4 +37,12 @@ final class MarvelCharactersFlowCoordinator: MarvelCharactersFlowCoordinatorProt
 
 extension MarvelCharactersFlowCoordinator: MarvelCharactersInteractorCoordinatorDelegate {
     
+    func didTapCharacter(character: Character) {
+        let characterDetailViewController = resolver.resolveCharacterDetailViewController(delegate: self, selectedCharacter: character)
+        self.navigationController.pushViewController(characterDetailViewController, animated: true)
+    }
+}
+
+extension MarvelCharactersFlowCoordinator: CharacterDetailInteractorCoordinatorDelegate {
+    
 }

@@ -12,7 +12,9 @@ class CharacterTableViewCell: UITableViewCell {
     private let characterName: UILabel = {
         let view = UILabel()
         view.textAlignment = .center
-        view.textColor = .black
+        view.textColor = .systemRed
+        view.font = UIFont(name: "Roboto", size: 20)
+        view.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -20,9 +22,18 @@ class CharacterTableViewCell: UITableViewCell {
     
     private let characterImage: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
+        view.layer.borderColor = UIColor.gray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 30
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+        view.layer.shadowColor = UIColor.red.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 4
+        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.borderWidth = 1
         return view
     }()
 
@@ -38,7 +49,7 @@ class CharacterTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = .black
         contentView.addSubview(characterName)
         contentView.addSubview(characterImage)
     }
@@ -46,16 +57,16 @@ class CharacterTableViewCell: UITableViewCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            characterImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            characterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             characterImage.widthAnchor.constraint(equalToConstant: 60),
+            characterImage.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
+            characterImage.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10),
+            characterImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             characterImage.heightAnchor.constraint(equalToConstant: 60),
-            characterImage.topAnchor.constraint(greaterThanOrEqualTo: self.contentView.topAnchor, constant: 10),
-            characterImage.bottomAnchor.constraint(lessThanOrEqualTo: self.contentView.bottomAnchor, constant: -10),
-            characterImage.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
-            
+
             characterName.leadingAnchor.constraint(equalTo: characterImage.trailingAnchor, constant: 8),
-            characterName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            characterName.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
+            characterName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
         ])
     }
     

@@ -16,6 +16,7 @@ final class MarvelCharactersPresenter: MarvelCharactersPresenterProtocol {
     weak var viewController: MarvelCharactersViewControllerProtocol?
     
     func presentCharacters(_ character: [Character]) {
+        
         let viewModel = character.map { character in
             CharacterViewModel(
                 id: character.id,
@@ -25,6 +26,5 @@ final class MarvelCharactersPresenter: MarvelCharactersPresenterProtocol {
             )
         }
         viewController?.displayCharacterViewModel(viewModel)
-        print(viewModel.first?.imageUrl)
     }
 }

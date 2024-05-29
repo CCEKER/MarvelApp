@@ -29,14 +29,27 @@ class MarvelCharactersViewController: UIViewController {
     override func loadView() {
         view = customView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavigationBar()
         
         self.customView.tableView.dataSource = self
         self.customView.tableView.delegate = self
         
         interactor.viewDidLoad()
+    }
+    
+    private func configureNavigationBar() {
+        title = "Character List"
+        if let navController = navigationController {
+            navController.navigationBar.tintColor = .red
+            navController.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.red,
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)
+            ]
+        }
     }
 }
 
@@ -60,4 +73,20 @@ extension MarvelCharactersViewController: UITableViewDelegate, UITableViewDataSo
         cell.reloadWith(viewModel)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        interactor.didTapCharacter(at: indexPath.row)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let scrollViewHeight = scrollView.frame.size.height
+        let contentHeight = scrollView.contentSize.height
+        
+        if position > (contentHeight - scrollViewHeight) {
+            interactor.viewDidLoad()
+        }
+    }
 }
+

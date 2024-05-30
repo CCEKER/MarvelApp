@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MarvelCharactersViewControllerProtocol: AnyObject {
-    func displayCharacterViewModel(_ viewState: CharacterViewState)
+    func displayCharacterViewState(_ viewState: CharacterViewState)
 }
 
 class MarvelCharactersViewController: UIViewController, MarvelLoadingDisplayable {
@@ -47,7 +47,7 @@ class MarvelCharactersViewController: UIViewController, MarvelLoadingDisplayable
             navController.navigationBar.tintColor = .red
             navController.navigationBar.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: UIColor.red,
-                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)
+                NSAttributedString.Key.font: FontManager.marvelRegularFont(ofSize: 20)
             ]
         }
     }
@@ -55,7 +55,7 @@ class MarvelCharactersViewController: UIViewController, MarvelLoadingDisplayable
 
 extension MarvelCharactersViewController: MarvelCharactersViewControllerProtocol {
     
-    func displayCharacterViewModel(_ viewState: CharacterViewState) {
+    func displayCharacterViewState(_ viewState: CharacterViewState) {
         
         switch viewState {
             
@@ -66,7 +66,6 @@ extension MarvelCharactersViewController: MarvelCharactersViewControllerProtocol
             
         case .loading:
             showLoading(viewModel: .init(caption: "Loading..."))
-            
         }
     }
 }
@@ -90,11 +89,11 @@ extension MarvelCharactersViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
+        let offsetY = scrollView.contentOffset.y
         let scrollViewHeight = scrollView.frame.size.height
         let contentHeight = scrollView.contentSize.height
         
-        if position > (contentHeight - scrollViewHeight) {
+        if offsetY > (contentHeight - scrollViewHeight) {
             interactor.viewDidLoad()
         }
     }

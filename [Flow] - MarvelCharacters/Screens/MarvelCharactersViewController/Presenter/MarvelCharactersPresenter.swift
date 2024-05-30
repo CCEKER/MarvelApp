@@ -26,12 +26,12 @@ final class MarvelCharactersPresenter: MarvelCharactersPresenterProtocol {
                 imageUrl: character.thumbnail.path + "." + character.thumbnail.thumbnailExtension
             )
         }
-        viewController?.displayCharacterViewModel(.initial(viewModel))
+        viewController?.displayCharacterViewState(.initial(viewModel))
     }
     
     func presentLoading() {
         let caption = "Loading..."
         let viewModel = MarvelLoadingViewModel(caption: caption)
-        viewController?.displayCharacterViewModel(.loading(viewModel))
+        viewController?.displayCharacterViewState(.loading(viewModel))
     }
 }

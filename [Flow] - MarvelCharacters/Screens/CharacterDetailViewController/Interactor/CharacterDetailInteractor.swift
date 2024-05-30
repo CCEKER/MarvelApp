@@ -32,7 +32,7 @@ extension CharacterDetailInteractor: CharacterDetailInteractorProtocol {
     func viewDidLoad() {
         
         let sortedFilteredComics = selectedCharacter.comics?.items.compactMap { comic -> (comic: ComicsItem, year: Int)? in
-            guard let year = extractYearSimpe(from: comic.name) else { return nil }
+            guard let year = extractionYear(from: comic.name) else { return nil }
             return (comic, year)
         }
             .filter { $0.year > 2005 }
@@ -43,7 +43,7 @@ extension CharacterDetailInteractor: CharacterDetailInteractorProtocol {
         presenter.presentSelectedCharacter(self.selectedCharacter, sortedComics: comicsTopresent)
     }
     
-    private func extractYearSimpe(from name: String) -> Int? {
+    private func extractionYear(from name: String) -> Int? {
         if let yearSubstring = name.split(separator: "(").last?.prefix(4), let year = Int(yearSubstring) {
             return year
         }

@@ -43,8 +43,7 @@ class CharacterDetailView: UIView {
         let view = UILabel()
         view.textAlignment = .center
         view.textColor = .systemRed
-        view.font = UIFont(name: "Roboto", size: 20)
-        view.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        view.font = FontManager.marvelRegularFont(ofSize: 20)
         view.numberOfLines = 0
         return view
     }()
@@ -61,19 +60,17 @@ class CharacterDetailView: UIView {
     
     private let descriptionLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: "Roboto", size: 16)
-        view.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        view.font = FontManager.marvelRegularFont(ofSize: 13)
         view.textColor = .gray
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.textAlignment = .center
+        view.textAlignment = .left
         return view
     }()
     
     private let infoLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: "Roboto", size: 15)
-        view.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        view.font = FontManager.marvelRegularFont(ofSize: 15)
         view.textColor = .systemRed
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -81,7 +78,7 @@ class CharacterDetailView: UIView {
     
     let tableView: UITableView = {
         let view = UITableView()
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         view.estimatedRowHeight = UITableView.automaticDimension
         view.separatorStyle = .none
         view.allowsSelection = true
@@ -104,7 +101,7 @@ class CharacterDetailView: UIView {
     }
     
     private func setupViews() {
-        backgroundColor = .black
+        backgroundColor = .systemBackground
         addSubview(characterDetailImageView)
         addSubview(characterLabelStackView)
         addSubview(descriptionLabel)

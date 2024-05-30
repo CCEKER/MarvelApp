@@ -12,8 +12,8 @@ class CharacterTableViewCell: UITableViewCell {
     private let characterName: UILabel = {
         let view = UILabel()
         view.textAlignment = .left
-        view.textColor = .systemRed
-        view.font = FontManager.marvelRegularFont(ofSize: 20)
+        view.textColor = .text
+        view.font = FontManager.marvelRegularFont(ofSize: 15)
         view.numberOfLines = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -47,7 +47,7 @@ class CharacterTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = .systemBackground
         contentView.addSubview(characterName)
         contentView.addSubview(characterImage)
     }

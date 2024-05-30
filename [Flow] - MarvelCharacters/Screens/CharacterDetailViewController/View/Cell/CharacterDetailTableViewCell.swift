@@ -11,8 +11,7 @@ class CharacterDetailTableViewCell: UITableViewCell {
     
     private let comicLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        view.font = UIFont(name: "Roboto", size: 15)
+        view.font = FontManager.marvelRegularFont(ofSize: 13)
         view.textColor = .gray
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +30,7 @@ class CharacterDetailTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = .black
+        contentView.backgroundColor = .systemBackground
         contentView.addSubview(comicLabel)
     }
     

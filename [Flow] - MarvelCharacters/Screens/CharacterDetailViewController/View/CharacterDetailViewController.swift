@@ -33,10 +33,17 @@ class CharacterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBar()
+        
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
         
         interactor.viewDidLoad()
+    }
+    
+    private func configureNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .red
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
 }
 

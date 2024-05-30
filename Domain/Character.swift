@@ -1,5 +1,5 @@
 //
-//  ConcereteModels.swift
+//  Character.swift
 //  MarvelApp
 //
 //  Created by Cagatay Ceker on 28.05.2024.
@@ -23,7 +23,8 @@ struct DataInfo: Codable {
 
 struct Character: Identifiable, Codable {
     let id: Int
-    let name, description: String
+    let name: String
+    let description: String
     let modified: String
     let thumbnail: Thumbnail
     let resourceURI: String?

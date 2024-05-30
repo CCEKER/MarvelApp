@@ -114,24 +114,24 @@ class CharacterDetailView: UIView {
         NSLayoutConstraint.activate([
             
             characterDetailImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            characterDetailImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 24),
-            characterDetailImageView.heightAnchor.constraint(equalToConstant: 180),
-            characterDetailImageView.widthAnchor.constraint(equalToConstant: 180),
+            characterDetailImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: ConstraintManager.stackViewPadding),
+            characterDetailImageView.heightAnchor.constraint(equalToConstant: ConstraintManager.characterDetailImageHeight),
+            characterDetailImageView.widthAnchor.constraint(equalToConstant: ConstraintManager.characterDetailImageWidth),
         
-            characterLabelStackView.topAnchor.constraint(equalTo: characterDetailImageView.bottomAnchor, constant: 24),
-            characterLabelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            characterLabelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            characterLabelStackView.topAnchor.constraint(equalTo: characterDetailImageView.bottomAnchor, constant: ConstraintManager.stackViewPadding),
+            characterLabelStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintManager.stackViewPadding),
+            characterLabelStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -ConstraintManager.stackViewPadding),
             
-            descriptionLabel.topAnchor.constraint(equalTo: characterLabelStackView.bottomAnchor, constant: 30),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            descriptionLabel.topAnchor.constraint(equalTo: characterLabelStackView.bottomAnchor, constant: ConstraintManager.descriptionLabelBottomMargin),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintManager.stackViewPadding),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -ConstraintManager.stackViewPadding),
             
-            infoLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 30),
-            infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            infoLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: ConstraintManager.descriptionLabelBottomMargin),
+            infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintManager.infoLabelLeading),
             
-            tableView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 12),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            tableView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: ConstraintManager.topAnchorConstraint()),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintManager.leadingAnchorConstraint()),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: ConstraintManager.trailingAnchorConstraint()),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }

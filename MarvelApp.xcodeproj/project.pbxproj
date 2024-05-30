@@ -44,6 +44,7 @@
 		9D0FAA8E2C060AEA001F41A6 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0FAA8D2C060AEA001F41A6 /* CoreAssembly.swift */; };
 		9D0FAA932C063546001F41A6 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0FAA922C063546001F41A6 /* CharacterViewModel.swift */; };
 		9D0FAA962C0636C7001F41A6 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0FAA952C0636C7001F41A6 /* CharacterTableViewCell.swift */; };
+		9DB103152C085BAD00D51703 /* ConstraintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB103142C085BAD00D51703 /* ConstraintManager.swift */; };
 		C9C24D98C56F93B34DD7DD4B /* Pods_MarvelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B650E9CD248ED369F1E4F45F /* Pods_MarvelApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		9D0FAA8D2C060AEA001F41A6 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		9D0FAA922C063546001F41A6 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		9D0FAA952C0636C7001F41A6 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
+		9DB103142C085BAD00D51703 /* ConstraintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintManager.swift; sourceTree = "<group>"; };
 		B650E9CD248ED369F1E4F45F /* Pods_MarvelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 		9D0D285E2C07231200C6F4DC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9DB103132C085B9D00D51703 /* ConstraintManager */,
 				9D0D28702C0764B200C6F4DC /* Font */,
 				9D0D286B2C0755A800C6F4DC /* Extensions */,
 				9D0D285F2C07231900C6F4DC /* MarvelLoading */,
@@ -392,6 +395,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9DB103132C085B9D00D51703 /* ConstraintManager */ = {
+			isa = PBXGroup;
+			children = (
+				9DB103142C085BAD00D51703 /* ConstraintManager.swift */,
+			);
+			path = ConstraintManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -519,6 +530,7 @@
 				9D0FAA712C0603E3001F41A6 /* MarvelCharactersView.swift in Sources */,
 				9D0FAA7B2C060432001F41A6 /* MarvelCharactersFlowCoordinatorModule.swift in Sources */,
 				9D0FAA962C0636C7001F41A6 /* CharacterTableViewCell.swift in Sources */,
+				9DB103152C085BAD00D51703 /* ConstraintManager.swift in Sources */,
 				9D0FAA8E2C060AEA001F41A6 /* CoreAssembly.swift in Sources */,
 				9D0D28692C07555500C6F4DC /* ENV.swift in Sources */,
 				9D0D28672C07242F00C6F4DC /* MarvelLoadingView.swift in Sources */,

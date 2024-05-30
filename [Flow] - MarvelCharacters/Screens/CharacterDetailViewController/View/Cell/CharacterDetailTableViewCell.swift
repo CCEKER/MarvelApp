@@ -38,9 +38,9 @@ class CharacterDetailTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
         
-            comicLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            comicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            comicLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+            comicLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: ConstraintManager.defaultPadding),
+            comicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: ConstraintManager.defaultPadding),
+            comicLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -ConstraintManager.defaultPadding)
         ])
     }
     

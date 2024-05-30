@@ -43,8 +43,8 @@ class MarvelCharactersView: UIView {
         NSLayoutConstraint.activate([
         
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintManager.leadingAnchorConstraint()),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: ConstraintManager.trailingAnchorConstraint()),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }

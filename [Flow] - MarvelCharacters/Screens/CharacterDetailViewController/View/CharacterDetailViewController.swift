@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CharacterDetailViewControllerProtocol: AnyObject {
-    func displayCharacterDetailViewModel(_ viewModel: CharacterDetailViewModel)
+    func displayCharacterDetailViewState(_ viewState: CharacterDetailViewState)
 }
 
 class CharacterDetailViewController: UIViewController {
@@ -49,10 +49,14 @@ class CharacterDetailViewController: UIViewController {
 
 extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
     
-    func displayCharacterDetailViewModel(_ viewModel: CharacterDetailViewModel) {
-        self.tableData = viewModel.comics
-        self.customView.reloadWith(viewModel)
-        self.customView.tableView.reloadData()
+    func displayCharacterDetailViewState(_ viewState: CharacterDetailViewState) {
+        
+        switch viewState {
+        case .initial(let viewModel):
+            self.tableData = viewModel.comics
+            self.customView.reloadWith(viewModel)
+            self.customView.tableView.reloadData()
+        }
     }
 }
 

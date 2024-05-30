@@ -34,6 +34,6 @@ final class CharacterDetailPresenter: CharacterDetailPresenterProtocol {
             comics: arrangedSortedComics,
             infoLabel: "Comics Published After 2005"
         )
-        viewController?.displayCharacterDetailViewModel(viewModel)
+        viewController?.displayCharacterDetailViewState(.initial(viewModel))
     }
 }

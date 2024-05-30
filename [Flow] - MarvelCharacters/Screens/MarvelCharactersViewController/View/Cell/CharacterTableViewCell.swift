@@ -39,7 +39,7 @@ class CharacterTableViewCell: UITableViewCell {
         view.axis = .horizontal
         view.distribution = .fill
         view.alignment = .fill
-        view.spacing = 5
+        view.spacing = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -63,13 +63,13 @@ class CharacterTableViewCell: UITableViewCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            horizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            horizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: ConstraintManager.defaultPadding),
+            horizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: ConstraintManager.defaultPadding),
+            horizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -ConstraintManager.defaultPadding),
+            horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -ConstraintManager.defaultPadding),
             
-            characterImage.widthAnchor.constraint(equalToConstant: 60),
-            characterImage.heightAnchor.constraint(equalToConstant: 60)
+            characterImage.widthAnchor.constraint(equalToConstant: ConstraintManager.characterImageSize),
+            characterImage.heightAnchor.constraint(equalToConstant: ConstraintManager.characterImageSize)
         ])
     }
     

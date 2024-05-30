@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum CharacterDetailViewState {
+    case initial(CharacterDetailViewModel)
+}
+
 struct CharacterDetailViewModel {
     let name: String
     let imageUrl: String

@@ -22,7 +22,7 @@ final class CharacterDetailPresenter: CharacterDetailPresenterProtocol {
         if sortedComics.count == 0 {
             let noComics = ComicsItem(
                 resourceURI: "",
-                name: "No Comics Found"
+                name: "No comics found."
             )
             arrangedSortedComics = [noComics]
         }

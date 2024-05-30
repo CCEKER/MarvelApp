@@ -15,7 +15,6 @@ class CharacterTableViewCell: UITableViewCell {
         view.textColor = .text
         view.font = FontManager.marvelRegularFont(ofSize: 15)
         view.numberOfLines = 1
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -34,6 +33,16 @@ class CharacterTableViewCell: UITableViewCell {
         view.layer.borderWidth = 0.3
         return view
     }()
+    
+    private lazy var horizontalStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [characterImage, characterName])
+        view.axis = .horizontal
+        view.distribution = .fill
+        view.alignment = .fill
+        view.spacing = 5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,24 +57,19 @@ class CharacterTableViewCell: UITableViewCell {
     
     private func setupViews() {
         contentView.backgroundColor = .systemBackground
-        contentView.addSubview(characterName)
-        contentView.addSubview(characterImage)
+        contentView.addSubview(horizontalStackView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            characterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            horizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            horizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            
             characterImage.widthAnchor.constraint(equalToConstant: 60),
-            characterImage.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
-            characterImage.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -10),
-            characterImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            characterImage.heightAnchor.constraint(equalToConstant: 60),
-
-            characterName.leadingAnchor.constraint(equalTo: characterImage.trailingAnchor, constant: 8),
-            characterName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+            characterImage.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     

@@ -36,8 +36,4 @@ struct ConstraintManager {
     static func bottomAnchorConstraint() -> CGFloat {
         return -defaultPadding
     }
-    
-    static func labelStackViewTopConstraint() -> CGFloat {
-        return characterDetailImageHeight + stackViewPadding
-    }
 }

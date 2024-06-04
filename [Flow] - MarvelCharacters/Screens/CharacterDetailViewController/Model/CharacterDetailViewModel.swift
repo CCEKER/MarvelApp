@@ -11,7 +11,7 @@ enum CharacterDetailViewState {
     case initial(CharacterDetailViewModel)
 }
 
-struct CharacterDetailViewModel {
+struct CharacterDetailViewModel: Equatable {
     let name: String
     let imageUrl: String
     let description: String

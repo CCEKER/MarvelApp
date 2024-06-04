@@ -55,7 +55,7 @@ struct Comics: Codable {
     let returned: Int
 }
 
-struct ComicsItem: Codable {
+struct ComicsItem: Codable, Equatable {
     let resourceURI: String
     let name: String
 }

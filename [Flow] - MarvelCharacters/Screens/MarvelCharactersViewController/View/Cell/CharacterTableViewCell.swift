@@ -75,6 +75,7 @@ class CharacterTableViewCell: UITableViewCell {
     
     func reloadWith(_ viewModel: CharacterViewModel) {
         characterName.text = viewModel.name
+        self.characterImage.image = UIImage(systemName: "star")
         DispatchQueue.global().async {
             if let data = try? Data(contentsOf: URL(string: viewModel.imageUrl!)!), let image = UIImage(data: data) {
                 DispatchQueue.main.async {

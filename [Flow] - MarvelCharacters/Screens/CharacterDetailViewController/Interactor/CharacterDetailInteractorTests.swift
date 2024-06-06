@@ -89,13 +89,13 @@ final class CharacterDetailInteractorTests: XCTestCase {
 final class InteractorEnvironment {
     
     var characterDetailPresenter = MockCharacterDetailPresenter()
-    var characterDetailCoordinator = MockCharacterDetailCoordinator()
+    var characterDetailInteractorCoordinatorDelegate = MockCharacterDetailInteractorCoordinatorDelegate()
     var selectedCharacter = Seeds.getCharacter()
     
     func makeSUT() -> CharacterDetailInteractor {
         
         let sut = CharacterDetailInteractor(selectedCharacter: selectedCharacter, presenter: characterDetailPresenter)
-        sut.coordinator = characterDetailCoordinator
+        sut.coordinator = characterDetailInteractorCoordinatorDelegate
         return sut
     }
 }

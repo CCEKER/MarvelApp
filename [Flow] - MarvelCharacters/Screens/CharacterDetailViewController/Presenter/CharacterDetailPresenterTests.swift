@@ -78,8 +78,10 @@ struct Seeds {
         let storyItem = StoriesItem(resourceURI: "resourceURI", name: "name", type: .cover)
         let stories = Stories(available: 1, collectionURI: "collectionURI", items: [storyItem], returned: 1)
         
-        let comicItem = ComicsItem(resourceURI: "resourceURI", name: "comics")
-        let comics = Comics(available: 1, collectionURI: "collectionURI", items: [comicItem], returned: 1)
+        let comicItem1 = ComicsItem(resourceURI: "someURI", name: "The Avengers (2012)")
+        let comicItem2 = ComicsItem(resourceURI: "someURI", name: "Iron Man (2008)")
+        let comicItem3 = ComicsItem(resourceURI: "someURI", name: "The Incredible Hulk (2003)")
+        let comics = Comics(available: 3, collectionURI: "collectionURI", items: [comicItem1, comicItem2, comicItem3], returned: 3)
         
         let seriesItem = ComicsItem(resourceURI: "resourceURI", name: "series")
         let series = Comics(available: 2, collectionURI: "collectionURI", items: [seriesItem], returned: 1)

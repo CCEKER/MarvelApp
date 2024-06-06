@@ -9,6 +9,7 @@ import Foundation
 
 protocol CharacterDetailInteractorProtocol {
     func viewDidLoad()
+    func extractionYear(from name: String) -> Int?
 }
 
 protocol CharacterDetailInteractorCoordinatorDelegate: AnyObject {
@@ -43,7 +44,7 @@ extension CharacterDetailInteractor: CharacterDetailInteractorProtocol {
         presenter.presentSelectedCharacter(self.selectedCharacter, sortedComics: comicsTopresent)
     }
     
-    private func extractionYear(from name: String) -> Int? {
+    func extractionYear(from name: String) -> Int? {
         if let yearSubstring = name.split(separator: "(").last?.prefix(4), let year = Int(yearSubstring) {
             return year
         }
